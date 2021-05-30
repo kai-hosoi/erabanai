@@ -20,11 +20,8 @@
         <%= link_to "Login", :login %>
       <% end %>
     </nav>
-    <div class=container>
-      <%= form_with url:search_search_path, method: :get, local: true do |f| %>
-        <%= f.text_field :restaurant_name, class:"search_form",placeholder:"入力してください" %>
-      <% end %>
-    </div>
     <%= yield %>
+    <footer class="bg-dark u-content-space-top pb-4" role="footer"> 
+    </footer>
   </body>
 </html>
