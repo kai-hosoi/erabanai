@@ -13,6 +13,12 @@
 ・ログイン機能（sosary)
 ・ユーザー登録
 
+これから実装する機能
+APIをたたいてユーザーが選んだことのないお店を紹介する機能
+履歴
+（他の人が選んでいるお店）
+（履歴で選んだお店に近いお店）
+
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
