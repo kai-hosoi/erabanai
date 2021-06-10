@@ -1,6 +1,10 @@
 class SearchController < ApplicationController
+  def index
+    
+  end
   def search
     area = params[:place]
+
     budget = params[:budget]
     if params[:style] == "0"
       style = URI.encode_www_form({night_view:1})
@@ -39,8 +43,6 @@ class SearchController < ApplicationController
         genre = "G001"#居酒屋
       end
     end
-    personality = params[:personality]
-    if area.instance_of?(String) == true
 
       uri = URI.parse("http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=29952817473475a8&large_area=#{area}&budget=#{budget}&#{style}&genre=#{genre}")
       xml = Net::HTTP.get(uri)
@@ -51,11 +53,6 @@ class SearchController < ApplicationController
       @logo1 = doc.css("shop")[0].css("> logo_image").first.content
       @logo2 = doc.css("shop")[1].css("> logo_image").first.content
       @logo3 = doc.css("shop")[2].css("> logo_image").first.content
-      render "index"
-    end
   end
 
-  def index
-
-  end
 end
