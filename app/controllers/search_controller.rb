@@ -91,7 +91,8 @@ class SearchController < ApplicationController
       logo = [logo1,logo2,logo3,logo1_2,logo2_2,logo3_2]
       rundam_number = []
       3.times do |i|
-        rundam_number.push(rand(0..name.size))
+        rundam_number.push(rand(0..name.size-1))
+        #ランダムに選んだ数がかぶってしまう
       end
       @name1 = name[rundam_number[0]]
       @name2 = name[rundam_number[1]]
