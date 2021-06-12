@@ -16,7 +16,7 @@ class SearchController < ApplicationController
 
     if params[:age] == "10" 
       if params[:personality] == "1"
-          genre = "G007"#中華
+        genre = "G007"#中華
       elsif params[:personality] == "2"
         genre = "G003"#創作料理
       elsif params[:personality] == "3"
@@ -49,12 +49,12 @@ class SearchController < ApplicationController
       uri = URI.parse("http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=29952817473475a8&large_area=#{area}&budget=#{budget}&#{style}&genre=#{genre}")
       xml = Net::HTTP.get(uri)
       doc = Nokogiri::XML(xml)
-      @name1 = doc.css("shop").first.css("> name").first.content
-      @name2 = doc.css("shop")[1].css("name").first.content
-      @name3 = doc.css("shop")[2].css("name").first.content
-      @logo1 = doc.css("shop").first.css("> logo_image").first.content
-      @logo2 = doc.css("shop")[1].css("> logo_image").first.content
-      @logo3 = doc.css("shop")[2].css("> logo_image").first.content
+      name1 = doc.css("shop").first.css("> name").first.content
+      name2 = doc.css("shop")[1].css("name").first.content
+      name3 = doc.css("shop")[2].css("name").first.content
+      logo1 = doc.css("shop").first.css("> logo_image").first.content
+      logo2 = doc.css("shop")[1].css("> logo_image").first.content
+      logo3 = doc.css("shop")[2].css("> logo_image").first.content
       
       if params[:number] == "1"
         number = "G010"#各国料理
@@ -80,28 +80,31 @@ class SearchController < ApplicationController
       uri2 = URI.parse("http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=29952817473475a8&large_area=#{area}&budget=#{budget}&genre=#{number}")
       xml2 = Net::HTTP.get(uri2)
       doc2 = Nokogiri::XML(xml2)
-      @name1_2 = doc2.css("shop")[0].css("> name").first.content
-      @name2_2 = doc2.css("shop")[1].css("name").first.content
-      @name3_2 = doc2.css("shop")[2].css("name").first.content
-      @logo1_2 = doc2.css("shop")[0].css("> logo_image").first.content
-      @logo2_2 = doc2.css("shop")[1].css("> logo_image").first.content
-      @logo3_2 = doc2.css("shop")[2].css("> logo_image").first.content
+      name1_2 = doc2.css("shop")[0].css("> name").first.content
+      name2_2 = doc2.css("shop")[1].css("name").first.content
+      name3_2 = doc2.css("shop")[2].css("name").first.content
+      logo1_2 = doc2.css("shop")[0].css("> logo_image").first.content
+      logo2_2 = doc2.css("shop")[1].css("> logo_image").first.content
+      logo3_2 = doc2.css("shop")[2].css("> logo_image").first.content
+
+      name = [name1,name2,name3,name1_2,name2_2,name3_2]
+      logo = [logo1,logo2,logo3,logo1_2,logo2_2,logo3_2]
+      rundam_number = []
+      3.times do |i|
+        rundam_number.push(rand(0..name.size))
+      end
+      @name1 = name[rundam_number[0]]
+      @name2 = name[rundam_number[1]]
+      @name3 = name[rundam_number[2]]
+      @logo1 = logo[rundam_number[0]]
+      @logo2 = logo[rundam_number[1]]
+      @logo3 = logo[rundam_number[2]]
+      # @name1,@name2,@name3 = name.sample(3)
 
 
 
+      
 
-
-
-      #季節と予算と場所
-      uri2 = URI.parse("http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=29952817473475a8&large_area=#{area}&budget=#{budget}&genre=#{number}")
-      xml2 = Net::HTTP.get(uri2)
-      doc2 = Nokogiri::XML(xml2)
-      @name1_2 = doc2.css("shop")[0].css("> name").first.content
-      @name2_2 = doc2.css("shop")[1].css("name").first.content
-      @name3_2 = doc2.css("shop")[2].css("name").first.content
-      @logo1_2 = doc2.css("shop")[0].css("> logo_image").first.content
-      @logo2_2 = doc2.css("shop")[1].css("> logo_image").first.content
-      @logo3_2 = doc2.css("shop")[2].css("> logo_image").first.content
       
   end
 
