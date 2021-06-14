@@ -155,11 +155,9 @@ class SearchController < ApplicationController
 
       name = [name1,name2,name3,name1_2,name2_2,name3_2,name1_3,name2_3,name3_3,name1_4,name2_4,name3_4].uniq
       logo = [logo1,logo2,logo3,logo1_2,logo2_2,logo3_2,logo1_3,logo2_3,logo3_3,logo1_4,logo2_4,logo3_4].uniq
-      rundam_number = []
-      3.times do |i|
-        rundam_number.push(rand(0..name.size-1))
-        #ランダムに選んだ数がかぶってしまう
-      end
+
+      rundam_number = (0..name.size).sample(3)
+
       @name1 = name[rundam_number[0]]
       @name2 = name[rundam_number[1]]
       @name3 = name[rundam_number[2]]
@@ -167,10 +165,6 @@ class SearchController < ApplicationController
       @logo2 = logo[rundam_number[1]]
       @logo3 = logo[rundam_number[2]]
       # @name1,@name2,@name3 = name.sample(3)
-
-
-
-      
 
       
   end
