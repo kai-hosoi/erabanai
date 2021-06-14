@@ -2,7 +2,7 @@
   <div class="row">
     <%= form_with url: {controller: 'search', action: 'search' }, method: :get, local: true do |f| %>
       <div class="field">
-        <p>場所</p>
+        <p>場所(駅名、地名を入力してください)</p>
         <div>
         <%= f.text_field :place,placeholder:"駅名を入力してください" %>
         </div>
@@ -79,15 +79,15 @@
           <%= f.label :color, "赤色"%>
         </div>
         <div>
-          <%= f.radio_button :color,value="0"%>
+          <%= f.radio_button :color,value="1"%>
           <%= f.label :color, "青色"%>
         </div>
         <div>
-          <%= f.radio_button :color,value="0"%>
+          <%= f.radio_button :color,value="2"%>
           <%= f.label :color, "黄色"%>
         </div>
         <div>
-          <%= f.radio_button :color,value="0"%>
+          <%= f.radio_button :color,value="3"%>
           <%= f.label :color, "緑色"%>
         </div>
 

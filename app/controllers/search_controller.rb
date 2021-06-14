@@ -87,8 +87,74 @@ class SearchController < ApplicationController
       logo2_2 = doc2.css("shop")[1].css("> logo_image").first.content
       logo3_2 = doc2.css("shop")[2].css("> logo_image").first.content
 
-      name = [name1,name2,name3,name1_2,name2_2,name3_2]
-      logo = [logo1,logo2,logo3,logo1_2,logo2_2,logo3_2]
+      #色、睡眠時間、予算、場所
+      case params[:color] == "0"
+      when params[:sleep] == "0" 
+        genre = "G017"#韓国料理
+      when params[:sleep] == "1" 
+        genre = "G017"#お好み焼き・もんじゃ
+      when params[:sleep] == "2" 
+        genre = "G017"#アジア・エスニック料理
+      end
+      case params[:color] == "1"
+      when params[:sleep] == "0" 
+        genre2 = "G006"#イタリアン・フレンチ
+      when params[:sleep] == "1" 
+        genre2 = "G012"#バー・カクテル
+      when params[:sleep] == "2" 
+        genre2 = "G007"#中華
+      end
+      case params[:color] == "2"
+      when params[:sleep] == "0" 
+        genre2 = "G005"#洋食
+      when params[:sleep] == "1" 
+        genre2 = "G001"#居酒屋
+      when params[:sleep] == "2" 
+        genre2 = "G011"#カラオケ・パーティ
+      end
+      case params[:color] == "3"
+      when params[:sleep] == "0" 
+        genre2 = "G004"#和食
+      when params[:sleep] == "1" 
+        genre2 = "G002"#ダイニングバー・バル
+      when params[:sleep] == "2" 
+        genre2 = "G003"#創作料理
+      end
+
+      uri2 = URI.parse("http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=29952817473475a8&large_area=#{area}&budget=#{budget}&genre=#{genre2}")
+      xml2 = Net::HTTP.get(uri2)
+      doc2 = Nokogiri::XML(xml2)
+      name1_3 = doc2.css("shop")[0].css("> name").first.content
+      name2_3 = doc2.css("shop")[1].css("name").first.content
+      name3_3 = doc2.css("shop")[2].css("name").first.content
+      logo1_3 = doc2.css("shop")[0].css("> logo_image").first.content
+      logo2_3 = doc2.css("shop")[1].css("> logo_image").first.content
+      logo3_3 = doc2.css("shop")[2].css("> logo_image").first.content
+
+      #季節、予算、場所
+      if params[:season] == "0"
+        season = URI.encode_www_form({free_drink:1})
+      elsif params[:season] == "1"
+        season = URI.encode_www_form({tatami:1})
+      elsif params[:season] == "2"
+        season = URI.encode_www_form({free_food:1})
+      elsif params[:season] == "3"
+        season = URI.encode_www_form({horigotatsu:1})
+      end
+  
+
+      uri2 = URI.parse("http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=29952817473475a8&large_area=#{area}&budget=#{budget}&#{season}")
+      xml2 = Net::HTTP.get(uri2)
+      doc2 = Nokogiri::XML(xml2)
+      name1_4 = doc2.css("shop")[0].css("> name").first.content
+      name2_4 = doc2.css("shop")[1].css("name").first.content
+      name3_4 = doc2.css("shop")[2].css("name").first.content
+      logo1_4 = doc2.css("shop")[0].css("> logo_image").first.content
+      logo2_4 = doc2.css("shop")[1].css("> logo_image").first.content
+      logo3_4 = doc2.css("shop")[2].css("> logo_image").first.content
+
+      name = [name1,name2,name3,name1_2,name2_2,name3_2,name1_3,name2_3,name3_3,name1_4,name2_4,name3_4].uniq
+      logo = [logo1,logo2,logo3,logo1_2,logo2_2,logo3_2,logo1_3,logo2_3,logo3_3,logo1_4,logo2_4,logo3_4].uniq
       rundam_number = []
       3.times do |i|
         rundam_number.push(rand(0..name.size-1))
