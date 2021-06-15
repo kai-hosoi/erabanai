@@ -50,11 +50,14 @@ class SearchController < ApplicationController
       xml = Net::HTTP.get(uri)
       doc = Nokogiri::XML(xml)
       name1 = doc.css("shop").first.css("> name").first.content
-      name2 = doc.css("shop")[1].css("name").first.content
-      name3 = doc.css("shop")[2].css("name").first.content
+      name2 = doc.css("shop")[1].css("> name").first.content
+      name3 = doc.css("shop")[2].css("> name").first.content
       logo1 = doc.css("shop").first.css("> logo_image").first.content
       logo2 = doc.css("shop")[1].css("> logo_image").first.content
       logo3 = doc.css("shop")[2].css("> logo_image").first.content
+      url1 = doc.css("shop").first.css("> urls").first.content
+      url2 = doc.css("shop")[1].css("> urls").first.content
+      url3 = doc.css("shop")[2].css("> urls").first.content
       
       if params[:number] == "1"
         number = "G010"#各国料理
@@ -86,6 +89,10 @@ class SearchController < ApplicationController
       logo1_2 = doc2.css("shop")[0].css("> logo_image").first.content
       logo2_2 = doc2.css("shop")[1].css("> logo_image").first.content
       logo3_2 = doc2.css("shop")[2].css("> logo_image").first.content
+      url1_2 = doc.css("shop").first.css("> urls").first.content
+      url2_2 = doc.css("shop")[1].css("> urls").first.content
+      url3_2 = doc.css("shop")[2].css("> urls").first.content
+
 
       #色、睡眠時間、予算、場所
       case params[:color] == "0"
@@ -130,6 +137,10 @@ class SearchController < ApplicationController
       logo1_3 = doc2.css("shop")[0].css("> logo_image").first.content
       logo2_3 = doc2.css("shop")[1].css("> logo_image").first.content
       logo3_3 = doc2.css("shop")[2].css("> logo_image").first.content
+      url1_3 = doc.css("shop").first.css("> urls").first.content
+      url2_3 = doc.css("shop")[1].css("> urls").first.content
+      url3_3 = doc.css("shop")[2].css("> urls").first.content
+
 
       #季節、予算、場所
       if params[:season] == "0"
@@ -147,16 +158,20 @@ class SearchController < ApplicationController
       xml2 = Net::HTTP.get(uri2)
       doc2 = Nokogiri::XML(xml2)
       name1_4 = doc2.css("shop")[0].css("> name").first.content
-      name2_4 = doc2.css("shop")[1].css("name").first.content
-      name3_4 = doc2.css("shop")[2].css("name").first.content
+      name2_4 = doc2.css("shop")[1].css("> name").first.content
+      name3_4 = doc2.css("shop")[2].css("> name").first.content
       logo1_4 = doc2.css("shop")[0].css("> logo_image").first.content
       logo2_4 = doc2.css("shop")[1].css("> logo_image").first.content
       logo3_4 = doc2.css("shop")[2].css("> logo_image").first.content
+      url1_4 = doc2.css("shop")[0].css("> urls").first.content
+      url2_4 = doc2.css("shop")[1].css("> urls").first.content
+      url3_4 = doc2.css("shop")[2].css("> urls").first.content
+
 
       name = [name1,name2,name3,name1_2,name2_2,name3_2,name1_3,name2_3,name3_3,name1_4,name2_4,name3_4].uniq
       logo = [logo1,logo2,logo3,logo1_2,logo2_2,logo3_2,logo1_3,logo2_3,logo3_3,logo1_4,logo2_4,logo3_4].uniq
-
-      rundam_number = (0..name.size).sample(3)
+      url = [url1,url2,url3,url1_2,url2_2,url3_2,url1_3,url2_3,url3_3,url1_4,url2_4,url3_4]
+      rundam_number = (0..name.size).to_a.sample(3)
 
       @name1 = name[rundam_number[0]]
       @name2 = name[rundam_number[1]]
@@ -164,6 +179,10 @@ class SearchController < ApplicationController
       @logo1 = logo[rundam_number[0]]
       @logo2 = logo[rundam_number[1]]
       @logo3 = logo[rundam_number[2]]
+      @url1 = url[rundam_number[0]]
+      @url2 = url[rundam_number[1]]
+      @url3 = url[rundam_number[2]]
+
       # @name1,@name2,@name3 = name.sample(3)
 
       
