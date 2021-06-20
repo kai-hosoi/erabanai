@@ -10,23 +10,23 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
+<div class="container">
+  <div class="form-group">
     <%= form.label :name, "名前" %>
     <%= form.text_field :name %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :email ,"メールアドレス" %>
     <%= form.text_field :email %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :password , "パスワード"%>
     <%= form.password_field :password %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :password_confirmation,"パスワード【再入力】" %>
     <%= form.password_field :password_confirmation %>
   </div>
@@ -34,4 +34,5 @@
   <div class="actions">
     <%= form.submit %>
   </div>
+</div>
 <% end %>
