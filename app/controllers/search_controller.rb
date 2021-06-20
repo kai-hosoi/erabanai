@@ -171,7 +171,7 @@ class SearchController < ApplicationController
 
         name = [name1,name2,name3,name1_2,name2_2,name3_2,name1_3,name2_3,name3_3,name1_4,name2_4,name3_4].uniq
         logo = [logo1,logo2,logo3,logo1_2,logo2_2,logo3_2,logo1_3,logo2_3,logo3_3,logo1_4,logo2_4,logo3_4].uniq
-        url = [url1,url2,url3,url1_2,url2_2,url3_2,url1_3,url2_3,url3_3,url1_4,url2_4,url3_4]
+        url = [url1,url2,url3,url1_2,url2_2,url3_2,url1_3,url2_3,url3_3,url1_4,url2_4,url3_4].uniq
         rundam_number = (0..name.size).to_a.sample(3)
 
         @name1 = name[rundam_number[0]]
@@ -184,11 +184,18 @@ class SearchController < ApplicationController
         @url2 = url[rundam_number[1]]
         @url3 = url[rundam_number[2]]
 
-
-      
   end
 
+  def select_store
+    # store_id = name[rundam_number[0]]
+    # selected_store = current_user.selected_stores.new(store_id)
+    # if selected_store.save
+      redirect_to 'http://www.google.co.jp/'
+    # end
+  end
+  
 end
+
 
 private 
 def search_params
