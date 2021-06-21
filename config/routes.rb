@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'search/index'
   get 'search/search'
   get 'search/select_store'
+  get 'users/mypage'
   get :login, 'user_sessions/new'
   get :logout, 'user_sessions/destroy'
 

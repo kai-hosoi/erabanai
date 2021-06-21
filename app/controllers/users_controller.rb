@@ -57,6 +57,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def mypage
+    @selectstore = SelectStore.where(user_id:current_user.id)
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
