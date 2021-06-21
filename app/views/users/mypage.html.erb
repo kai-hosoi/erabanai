@@ -1,0 +1,9 @@
+
+<% @selectstore.each do |member| %>
+        <%= member.store_id %><br>
+        <%= member.name %><br>
+        <% if member.logo %>
+            <%=image_tag member.logo %><br>
+        <% end %>
+        <%=link_to member.url %><br>
+<% end %>

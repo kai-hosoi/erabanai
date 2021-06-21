@@ -59,6 +59,9 @@ class SearchController < ApplicationController
         url1 = doc.css("shop").first.css("> urls").first.content
         url2 = doc.css("shop")[1].css("> urls").first.content
         url3 = doc.css("shop")[2].css("> urls").first.content
+        id1 = doc.css("shop").first.css("> id").first.content
+        id2 = doc.css("shop")[1].css("> id").first.content
+        id3 = doc.css("shop")[2].css("> id").first.content
         
         if search_params[:number] == "1"
           number = "G010"#各国料理
@@ -93,6 +96,9 @@ class SearchController < ApplicationController
         url1_2 = doc2.css("shop").first.css("> urls").first.content
         url2_2 = doc2.css("shop")[1].css("> urls").first.content
         url3_2 = doc2.css("shop")[2].css("> urls").first.content
+        id1_2 = doc2.css("shop").first.css("> id").first.content
+        id2_2 = doc2.css("shop")[1].css("> id").first.content
+        id3_2 = doc2.css("shop")[2].css("> id").first.content
 
 
         #色、睡眠時間、予算、場所
@@ -141,6 +147,9 @@ class SearchController < ApplicationController
         url1_3 = doc3.css("shop").first.css("> urls").first.content
         url2_3 = doc3.css("shop")[1].css("> urls").first.content
         url3_3 = doc3.css("shop")[2].css("> urls").first.content
+        id1_3 = doc3.css("shop").first.css("> id").first.content
+        id2_3 = doc3.css("shop")[1].css("> id").first.content
+        id3_3 = doc3.css("shop")[2].css("> id").first.content
 
 
         #季節、予算、場所
@@ -167,11 +176,23 @@ class SearchController < ApplicationController
         url1_4 = doc4.css("shop")[0].css("> urls").first.content
         url2_4 = doc4.css("shop")[1].css("> urls").first.content
         url3_4 = doc4.css("shop")[2].css("> urls").first.content
+        id1_4 = doc4.css("shop").first.css("> id").first.content
+        id2_4 = doc4.css("shop")[1].css("> id").first.content
+        id3_4 = doc4.css("shop")[2].css("> id").first.content
 
 
         name = [name1,name2,name3,name1_2,name2_2,name3_2,name1_3,name2_3,name3_3,name1_4,name2_4,name3_4].uniq
+        selected_name = SelectStore.where(user_id:current_user.id).pluck('name')
+        name.delete(name & selected_name)
         logo = [logo1,logo2,logo3,logo1_2,logo2_2,logo3_2,logo1_3,logo2_3,logo3_3,logo1_4,logo2_4,logo3_4].uniq
+        selected_logo = SelectStore.where(user_id:current_user.id).pluck('logo')
+        logo.delete(name & selected_logo)
         url = [url1,url2,url3,url1_2,url2_2,url3_2,url1_3,url2_3,url3_3,url1_4,url2_4,url3_4].uniq
+        selected_url = SelectStore.where(user_id:current_user.id).pluck('url')
+        url.delete(name & selected_url)
+        id = [id1,id2,id3,id1_2,id2_2,id3_2,id1_3,id2_3,id3_3,id1_4,id2_4,id3_4].uniq
+        selected_id = SelectStore.where(user_id:current_user.id).pluck('id')
+        id.delete(name & selected_id)
         rundam_number = (0..name.size).to_a.sample(3)
 
         @name1 = name[rundam_number[0]]
@@ -183,15 +204,21 @@ class SearchController < ApplicationController
         @url1 = url[rundam_number[0]]
         @url2 = url[rundam_number[1]]
         @url3 = url[rundam_number[2]]
-
+        @id1 = id[rundam_number[0]]
+        @id2 = id[rundam_number[1]]
+        @id3 = id[rundam_number[2]]
+        
   end
 
   def select_store
-    # store_id = name[rundam_number[0]]
-    # selected_store = current_user.selected_stores.new(store_id)
-    # if selected_store.save
-      redirect_to 'http://www.google.co.jp/'
-    # end
+    @select_store = SelectStore.new
+    @select_store.user_id = current_user.id
+    @select_store.store_id = params[:store_id]
+    @select_store.name = params[:name]
+    @select_store.logo = params[:logo]
+    @select_store.url = params[:url]
+    @select_store.save
+    redirect_to params[:url]
   end
   
 end
