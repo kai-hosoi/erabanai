@@ -47,22 +47,28 @@ class SearchController < ApplicationController
         end
       end
         #年と性格と予算と場所
-        uri = URI.parse("http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=29952817473475a8&large_area=#{area}&budget=#{budget}&#{style}&genre=#{genre}")
+        params = URI.encode_www_form({key: "29952817473475a8", keyword: area, budget: budget, genre: genre})
+        uri = URI.parse("http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?#{params}&#{style}")
         xml = Net::HTTP.get(uri)
         doc = Nokogiri::XML(xml)
-        name1 = doc.css("shop").first.css("> name").first.content
-        name2 = doc.css("shop")[1].css("> name").first.content
-        name3 = doc.css("shop")[2].css("> name").first.content
-        logo1 = doc.css("shop").first.css("> logo_image").first.content
-        logo2 = doc.css("shop")[1].css("> logo_image").first.content
-        logo3 = doc.css("shop")[2].css("> logo_image").first.content
-        url1 = doc.css("shop").first.css("> urls").first.content
-        url2 = doc.css("shop")[1].css("> urls").first.content
-        url3 = doc.css("shop")[2].css("> urls").first.content
-        id1 = doc.css("shop").first.css("> id").first.content
-        id2 = doc.css("shop")[1].css("> id").first.content
-        id3 = doc.css("shop")[2].css("> id").first.content
-        
+        name = []
+        logo = []
+        url = []
+        id = []
+        (0..2).each do |i|
+          if doc.css("shop")[i].nil?
+            name.push("なし")
+            logo.push("なし")
+            url.push("なし")
+            id.push("なし")
+          else
+            name.push(doc.css("shop")[i].css("> name").first.content)
+            logo.push(doc.css("shop")[i].css("> logo_image").first.content)
+            url.push(doc.css("shop")[i].css("> urls").first.content)
+            id.push(doc.css("shop")[i].css("> id").first.content)
+          end
+        end
+
         if search_params[:number] == "1"
           number = "G010"#各国料理
         elsif search_params[:number] == "2"
@@ -84,21 +90,23 @@ class SearchController < ApplicationController
         end
 
         #数字と予算と場所
-        uri2 = URI.parse("http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=29952817473475a8&large_area=#{area}&budget=#{budget}&genre=#{number}")
+        params2 = URI.encode_www_form({key: "29952817473475a8", keyword: area, budget: budget, genre: number})
+        uri2 = URI.parse("http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?#{params2}")
         xml2 = Net::HTTP.get(uri2)
         doc2 = Nokogiri::XML(xml2)
-        name1_2 = doc2.css("shop")[0].css("> name").first.content
-        name2_2 = doc2.css("shop")[1].css("name").first.content
-        name3_2 = doc2.css("shop")[2].css("name").first.content
-        logo1_2 = doc2.css("shop")[0].css("> logo_image").first.content
-        logo2_2 = doc2.css("shop")[1].css("> logo_image").first.content
-        logo3_2 = doc2.css("shop")[2].css("> logo_image").first.content
-        url1_2 = doc2.css("shop").first.css("> urls").first.content
-        url2_2 = doc2.css("shop")[1].css("> urls").first.content
-        url3_2 = doc2.css("shop")[2].css("> urls").first.content
-        id1_2 = doc2.css("shop").first.css("> id").first.content
-        id2_2 = doc2.css("shop")[1].css("> id").first.content
-        id3_2 = doc2.css("shop")[2].css("> id").first.content
+        (0..2).each do |i|
+          if doc2.css("shop")[i].nil?
+            name.push("なし")
+            logo.push("なし")
+            url.push("なし")
+            id.push("なし")
+          else
+            name.push(doc2.css("shop")[i].css("> name").first.content)
+            logo.push(doc2.css("shop")[i].css("> logo_image").first.content)
+            url.push(doc2.css("shop")[i].css("> urls").first.content)
+            id.push(doc2.css("shop")[i].css("> id").first.content)
+          end
+        end
 
 
         #色、睡眠時間、予算、場所
@@ -135,21 +143,23 @@ class SearchController < ApplicationController
           genre2 = "G003"#創作料理
         end
 
-        uri3 = URI.parse("http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=29952817473475a8&large_area=#{area}&budget=#{budget}&genre=#{genre2}")
+        params3 = URI.encode_www_form({key: "29952817473475a8", keyword: area, budget: budget,night_view: 1, genre: genre2})
+        uri3 = URI.parse("http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?#{params3}")
         xml3 = Net::HTTP.get(uri3)
         doc3 = Nokogiri::XML(xml3)
-        name1_3 = doc3.css("shop")[0].css("> name").first.content
-        name2_3 = doc3.css("shop")[1].css("name").first.content
-        name3_3 = doc3.css("shop")[2].css("name").first.content
-        logo1_3 = doc3.css("shop")[0].css("> logo_image").first.content
-        logo2_3 = doc3.css("shop")[1].css("> logo_image").first.content
-        logo3_3 = doc3.css("shop")[2].css("> logo_image").first.content
-        url1_3 = doc3.css("shop").first.css("> urls").first.content
-        url2_3 = doc3.css("shop")[1].css("> urls").first.content
-        url3_3 = doc3.css("shop")[2].css("> urls").first.content
-        id1_3 = doc3.css("shop").first.css("> id").first.content
-        id2_3 = doc3.css("shop")[1].css("> id").first.content
-        id3_3 = doc3.css("shop")[2].css("> id").first.content
+        (0..2).each do |i|
+          if doc3.css("shop")[i].nil?
+            name.push("なし")
+            logo.push("なし")
+            url.push("なし")
+            id.push("なし")
+          else
+            name.push(doc3.css("shop")[i].css("> name").first.content)
+            logo.push(doc3.css("shop")[i].css("> logo_image").first.content)
+            url.push(doc3.css("shop")[i].css("> urls").first.content)
+            id.push(doc3.css("shop")[i].css("> id").first.content)
+          end
+        end
 
 
         #季節、予算、場所
@@ -163,44 +173,48 @@ class SearchController < ApplicationController
           season = URI.encode_www_form({horigotatsu:1})
         end
     
-
-        uri4 = URI.parse("http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=29952817473475a8&large_area=#{area}&budget=#{budget}&#{season}")
+        params4 = URI.encode_www_form({key: "29952817473475a8", keyword: area, budget: budget})
+        uri4 = URI.parse("http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?#{params4}&#{season}")
         xml4 = Net::HTTP.get(uri4)
         doc4 = Nokogiri::XML(xml4)
-        name1_4 = doc4.css("shop")[0].css("> name").first.content
-        name2_4 = doc4.css("shop")[1].css("> name").first.content
-        name3_4 = doc4.css("shop")[2].css("> name").first.content
-        logo1_4 = doc4.css("shop")[0].css("> logo_image").first.content
-        logo2_4 = doc4.css("shop")[1].css("> logo_image").first.content
-        logo3_4 = doc4.css("shop")[2].css("> logo_image").first.content
-        url1_4 = doc4.css("shop")[0].css("> urls").first.content
-        url2_4 = doc4.css("shop")[1].css("> urls").first.content
-        url3_4 = doc4.css("shop")[2].css("> urls").first.content
-        id1_4 = doc4.css("shop").first.css("> id").first.content
-        id2_4 = doc4.css("shop")[1].css("> id").first.content
-        id3_4 = doc4.css("shop")[2].css("> id").first.content
+        (0..2).each do |i|
+          if doc4.css("shop")[i].nil?
+            name.push("なし")
+            logo.push("なし")
+            url.push("なし")
+            id.push("なし")
+          else
+            name.push(doc4.css("shop")[i].css("> name").first.content)
+            logo.push(doc4.css("shop")[i].css("> logo_image").first.content)
+            url.push(doc4.css("shop")[i].css("> urls").first.content)
+            id.push(doc4.css("shop")[i].css("> id").first.content)
+          end
+        end
 
-
-        name = [name1,name2,name3,name1_2,name2_2,name3_2,name1_3,name2_3,name3_3,name1_4,name2_4,name3_4].uniq
+        name.uniq
         selected_name = SelectStore.where(user_id:current_user.id).pluck('name')
+        name.delete("なし")
         double_name = name & selected_name
         (0..double_name.size).each do |i|
           name.delete(double_name[i])
         end
-        logo = [logo1,logo2,logo3,logo1_2,logo2_2,logo3_2,logo1_3,logo2_3,logo3_3,logo1_4,logo2_4,logo3_4].uniq
+        logo.uniq
+        logo.delete("なし")
         selected_logo = SelectStore.where(user_id:current_user.id).pluck('logo')
         double_logo = logo & selected_logo
         (0..double_logo.size).each do |i|
           logo.delete(double_logo[i])
         end
-        url = [url1,url2,url3,url1_2,url2_2,url3_2,url1_3,url2_3,url3_3,url1_4,url2_4,url3_4].uniq
+        url.uniq
+        url.delete("なし")
         selected_url = SelectStore.where(user_id:current_user.id).pluck('url')
         double_url = url & selected_url
         (0..double_url.size).each do |i|
           url.delete(double_url[i])
         end
 
-        id = [id1,id2,id3,id1_2,id2_2,id3_2,id1_3,id2_3,id3_3,id1_4,id2_4,id3_4].uniq
+        id.uniq
+        id.delete("なし")
         selected_id = SelectStore.where(user_id:current_user.id).pluck('id')
         double_id = id & selected_id
         (0..double_id.size).each do |i|
