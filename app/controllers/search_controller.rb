@@ -221,7 +221,7 @@ class SearchController < ApplicationController
           id.delete(double_id[i])
         end
 
-        rundam_number = (0..name.size).to_a.sample(3)
+        rundam_number = (0..(name.size-1)).to_a.sample(3)
 
         @name1 = name[rundam_number[0]]
         @name2 = name[rundam_number[1]]
@@ -235,7 +235,6 @@ class SearchController < ApplicationController
         @id1 = id[rundam_number[0]]
         @id2 = id[rundam_number[1]]
         @id3 = id[rundam_number[2]]
-        
   end
 
   def select_store
@@ -250,6 +249,7 @@ class SearchController < ApplicationController
   end
   
 end
+
 
 
 private 
