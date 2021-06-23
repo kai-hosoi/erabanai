@@ -1,36 +1,42 @@
 <div class=container>
-    <div class="row">
-        <p>
-        店舗名：<%= @name1 %>
-        <% if @logo1 %>
-            <%=image_tag @logo1%>
-        <% end %>
-        <% if @url1 %>
-            <%=link_to "url", search_select_store_path(store_id:@id1,logo:@logo1,name:@name1,url:@url1), :target=>["_blank"] %>
-        <% end %>
-        </p>
+    <div class="row py-3">
+        <div class="col align-self-center">
+            <div class="border rounded shadow p-3 mb-5 bg-white rounded" style="padding:10px;">
+            店舗名：<%= @name1 %>
+            <% if @logo1 %>
+                <%=image_tag @logo1%>
+            <% end %>
+            <% if @url1 %>
+                <%=link_to "詳細ページ", search_select_store_path(store_id:@id1,logo:@logo1,name:@name1,url:@url1), :target=>["_blank"] %>
+            <% end %>
+            </div>
+        </div>
     </div>
-    <div class="row">
-        <p>
-        店舗名：<%= @name2 %>
-        <% if @logo2 %>
-            <%=image_tag @logo2%>
-        <% end %>
-        <% if @url2 %>
-            <%=link_to "url", search_select_store_path(store_id:@id2,logo:@logo2,name:@name2,url:@url2), :target=>["_blank"]%>
-        <% end %>
-        </p>
+    <div class="row py-3">
+        <div class="col align-self-center">
+            <div class="border rounded shadow p-3 mb-5 bg-white rounded" style="padding:10px;">
+            店舗名：<%= @name2 %>
+            <% if @logo2 %>
+                <%=image_tag @logo2%>
+            <% end %>
+            <% if @url2 %>
+                <%=link_to "詳細ページ", search_select_store_path(store_id:@id2,logo:@logo2,name:@name2,url:@url2), :target=>["_blank"]%>
+            <% end %>
+            </div>
+        </div>
     </div>
-    <div class="row">
-        <p>
-        店舗名：<%= @name3 %>
-        <% if @logo3 %>
-        <%=image_tag @logo3%>
-        <% end %> 
-        <% if @url3 %>
-        <%=link_to "url", search_select_store_path(store_id:@id3,logo:@logo3,name:@name3,url:@url3), :target=>["_blank"]%>
-        <% end %>
-        </p>
+    <div class="row py-3">
+        <div class="col align-self-center">
+            <div class="border rounded shadow p-3 mb-5 bg-white rounded" style="padding:10px;">
+            店舗名：<%= @name3 %>
+            <% if @logo3 %>
+            <%=image_tag @logo3%>
+            <% end %> 
+            <% if @url3 %>
+            <%=link_to "詳細ページ", search_select_store_path(store_id:@id3,logo:@logo3,name:@name3,url:@url3), :target=>["_blank"]%>
+            <% end %>
+            </div>
+        </div>
     </div>
 </div>
 

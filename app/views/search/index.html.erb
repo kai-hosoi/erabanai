@@ -1,147 +1,150 @@
 <div class="container">
   <div class="row">
-    <%= form_with model: @search,url: {controller: 'search', action: 'search' }, method: :get,local: true do |f| %>
-      <div class="field">
-        <p>場所(駅名、地名を入力してください)</p>
-        <div>
-        <%= f.text_field :place,placeholder:"駅名を入力してください" %>
-        </div>
-      <div>
+    <form class= "col-md-6 offset-md-3">
+      <%= form_with model: @search,url: {controller: 'search', action: 'search' }, method: :get,local: true do |f| %>
+          <div class="field py-3">
+              <p class="font-weight-bold">場所(駅名、地名を入力してください)</p>
+              <div>
+              <%= f.text_field :place,placeholder:"駅名を入力してください" %>
+            </div>
+          <div>
+          
 
-      <div class="field">
-        <p>予算</p>
-        <div>
-        <%= f.radio_button :budget,value="B002"%>
-        <%= f.label :budget, "3000円"%>
-        </div>
-        <div>
-        <%= f.radio_button :budget,value="B008"%>
-        <%= f.label :budget, "5000円" %>
-        </div>
-        <div>
-        <%= f.radio_button :budget,value="B005"%>
-        <%= f.label :budget, "10000円" %>
-        </div>
-      <div>
+          <div class="field py-3">
+            <p class="font-weight-bold">予算</p>
+            <div>
+            <%= f.radio_button :budget,value="B002"%>
+            <%= f.label :budget, "3000円"%>
+            </div>
+            <div>
+            <%= f.radio_button :budget,value="B008"%>
+            <%= f.label :budget, "5000円" %>
+            </div>
+            <div>
+            <%= f.radio_button :budget,value="B005"%>
+            <%= f.label :budget, "10000円" %>
+            </div>
+          <div>
 
-      <div class="field">
-        <p>インドアですか？アウトドアですか？</p>
-        <div>
-        <%= f.radio_button :style,value="0"%>
-        <%= f.label :style, "インドア派"%>
-        </div>
-        <div>
-        <%= f.radio_button :style,value="1"%>
-        <%= f.label :style, "アウトドア派"%>
-        </div>
-      <div>
+          <div class="field py-3">
+            <p class="font-weight-bold">インドアですか？アウトドアですか？</p>
+            <div>
+            <%= f.radio_button :style,value="0"%>
+            <%= f.label :style, "インドア派"%>
+            </div>
+            <div>
+            <%= f.radio_button :style,value="1"%>
+            <%= f.label :style, "アウトドア派"%>
+            </div>
+          <div>
 
-      <div class="field">
-        <p>年齢</p>
-        <div>
-        <%= f.radio_button :age,value="10"%>
-        <%= f.label :age, "10-20代"%>
-        </div>
-        <div>
-        <%= f.radio_button :age,value="30"%>
-        <%= f.label :age, "30-40代"%>
-        </div>
-        <div>
-        <%= f.radio_button :age,value="50"%>
-        <%= f.label :age, "50-60代"%>
-        </div>
-      <div>
+          <div class="field py-3">
+            <p class="font-weight-bold">年齢</p>
+            <div>
+            <%= f.radio_button :age,value="10"%>
+            <%= f.label :age, "10-20代"%>
+            </div>
+            <div>
+            <%= f.radio_button :age,value="30"%>
+            <%= f.label :age, "30-40代"%>
+            </div>
+            <div>
+            <%= f.radio_button :age,value="50"%>
+            <%= f.label :age, "50-60代"%>
+            </div>
+          <div>
 
-      <div class="field">
-        <p>性格</p>
-        <div>
-        <%= f.radio_button :personality,value="1"%>
-        <%= f.label :personality, "好奇心旺盛"%>
-        </div>
-        <div>
-        <%= f.radio_button :personality,value="2"%>
-        <%= f.label :personality, "辛抱強い"%>
-        </div>
-        <div>
-        <%= f.radio_button :personality,value="3"%>
-        <%= f.label :personality, "野心家" %>
-        </div>
-        <div>
-        <%= f.radio_button :personality,value="4"%>
-        <%= f.label :personality, "マイペース"%>
-        </div>
-      </div>
+          <div class="field py-3">
+            <p class="font-weight-bold">性格</p>
+            <div>
+            <%= f.radio_button :personality,value="1"%>
+            <%= f.label :personality, "好奇心旺盛"%>
+            </div>
+            <div>
+            <%= f.radio_button :personality,value="2"%>
+            <%= f.label :personality, "辛抱強い"%>
+            </div>
+            <div>
+            <%= f.radio_button :personality,value="3"%>
+            <%= f.label :personality, "野心家" %>
+            </div>
+            <div>
+            <%= f.radio_button :personality,value="4"%>
+            <%= f.label :personality, "マイペース"%>
+            </div>
+          </div>
 
-      <div class="field">
-        <p>どの色が一番好きなですか？</p>
-        <div>
-          <%= f.radio_button :color,value="0"%>
-          <%= f.label :color, "赤色"%>
-        </div>
-        <div>
-          <%= f.radio_button :color,value="1"%>
-          <%= f.label :color, "青色"%>
-        </div>
-        <div>
-          <%= f.radio_button :color,value="2"%>
-          <%= f.label :color, "黄色"%>
-        </div>
-        <div>
-          <%= f.radio_button :color,value="3"%>
-          <%= f.label :color, "緑色"%>
-        </div>
+          <div class="field py-3">
+            <p class="font-weight-bold">どの色が一番好きなですか？</p>
+            <div>
+              <%= f.radio_button :color,value="0"%>
+              <%= f.label :color, "赤色"%>
+            </div>
+            <div>
+              <%= f.radio_button :color,value="1"%>
+              <%= f.label :color, "青色"%>
+            </div>
+            <div>
+              <%= f.radio_button :color,value="2"%>
+              <%= f.label :color, "黄色"%>
+            </div>
+            <div>
+              <%= f.radio_button :color,value="3"%>
+              <%= f.label :color, "緑色"%>
+            </div>
 
-      </div>
+          </div>
 
-      <div class="field">
-        <p>好きな数字はなんですか？（１〜９）</p>
-        <div>
-        <%= f.text_field :number,placeholder:"１〜９の中で一番好きな数字を入力してください" %>
-        </div>
-      </div>
+          <div class="field py-3">
+            <p class="font-weight-bold">好きな数字はなんですか？（１〜９）</p>
+            <div>
+            <%= f.text_field :number,placeholder:"１〜９の中で一番好きな数字を入力してください" %>
+            </div>
+          </div>
 
-      <div class="field">
-        <p>何時間寝ますか？</p>
-        <div>
-          <%= f.radio_button :sleep,value="0"%>
-          <%= f.label :sleep, "4〜6時間"%>
-        </div>
-        <div>
-          <%= f.radio_button :sleep,value="1"%>
-          <%= f.label :sleep, "6〜8時間"%>
-        </div>
-        <div>
-          <%= f.radio_button :sleep,value="2"%>
-          <%= f.label :sleep, "8〜10時間"%>
-        </div>
-      </div>
+          <div class="field py-3">
+            <p class="font-weight-bold">何時間寝ますか？</p>
+            <div>
+              <%= f.radio_button :sleep,value="0"%>
+              <%= f.label :sleep, "4〜6時間"%>
+            </div>
+            <div>
+              <%= f.radio_button :sleep,value="1"%>
+              <%= f.label :sleep, "6〜8時間"%>
+            </div>
+            <div>
+              <%= f.radio_button :sleep,value="2"%>
+              <%= f.label :sleep, "8〜10時間"%>
+            </div>
+          </div>
 
-      <div class="field">
-        <p>好きな季節はなんですか？</p>
-        <div>
-          <%= f.radio_button :season,value="1"%>
-          <%= f.label :season, "春"%>
-        </div>
-        <div>
-          <%= f.radio_button :season,value="2"%>
-          <%= f.label :season, "夏"%>
-        </div>
-        <div>
-          <%= f.radio_button :season,value="3"%>
-          <%= f.label :season, "秋" %>
-        </div>
-        <div>
-          <%= f.radio_button :season,value="4"%>
-          <%= f.label :season, "冬"%>
-        </div>
-      </div>
+          <div class="field py-3">
+            <p class="font-weight-bold">好きな季節はなんですか？</p>
+            <div>
+              <%= f.radio_button :season,value="1"%>
+              <%= f.label :season, "春"%>
+            </div>
+            <div>
+              <%= f.radio_button :season,value="2"%>
+              <%= f.label :season, "夏"%>
+            </div>
+            <div>
+              <%= f.radio_button :season,value="3"%>
+              <%= f.label :season, "秋" %>
+            </div>
+            <div>
+              <%= f.radio_button :season,value="4"%>
+              <%= f.label :season, "冬"%>
+            </div>
+          </div>
 
 
-      <div>
-      <%= f.submit "回答",name: nil %>
-      </div>
-                    
-            
-    <% end %>
+          <div class="btn btn-default">
+          <%= f.submit "回答",name: nil %>
+          </div>
+                      
+              
+      <% end %>
+    </form>
   </div>
 </div>
