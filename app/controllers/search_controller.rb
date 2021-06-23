@@ -183,16 +183,30 @@ class SearchController < ApplicationController
 
         name = [name1,name2,name3,name1_2,name2_2,name3_2,name1_3,name2_3,name3_3,name1_4,name2_4,name3_4].uniq
         selected_name = SelectStore.where(user_id:current_user.id).pluck('name')
-        name.delete(name & selected_name)
+        double_name = name & selected_name
+        (0..double_name.size).each do |i|
+          name.delete(double_name[i])
+        end
         logo = [logo1,logo2,logo3,logo1_2,logo2_2,logo3_2,logo1_3,logo2_3,logo3_3,logo1_4,logo2_4,logo3_4].uniq
         selected_logo = SelectStore.where(user_id:current_user.id).pluck('logo')
-        logo.delete(name & selected_logo)
+        double_logo = logo & selected_logo
+        (0..double_logo.size).each do |i|
+          logo.delete(double_logo[i])
+        end
         url = [url1,url2,url3,url1_2,url2_2,url3_2,url1_3,url2_3,url3_3,url1_4,url2_4,url3_4].uniq
         selected_url = SelectStore.where(user_id:current_user.id).pluck('url')
-        url.delete(name & selected_url)
+        double_url = url & selected_url
+        (0..double_url.size).each do |i|
+          url.delete(double_url[i])
+        end
+
         id = [id1,id2,id3,id1_2,id2_2,id3_2,id1_3,id2_3,id3_3,id1_4,id2_4,id3_4].uniq
         selected_id = SelectStore.where(user_id:current_user.id).pluck('id')
-        id.delete(name & selected_id)
+        double_id = id & selected_id
+        (0..double_id.size).each do |i|
+          id.delete(double_id[i])
+        end
+
         rundam_number = (0..name.size).to_a.sample(3)
 
         @name1 = name[rundam_number[0]]
