@@ -21,6 +21,7 @@
         <%= link_to "ログアウト", :logout, method: :post %>
       <% else %>
         <%= link_to "登録", new_user_path %> |
+        <%= link_to "検索ページ", search_index_path %>
         <%= link_to "ログイン", :login %>
       <% end %>
     </nav>
