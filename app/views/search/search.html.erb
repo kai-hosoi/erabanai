@@ -1,21 +1,25 @@
 <div class=container>
-    <div class="row">
-        <p>
-        店舗名：<%= @name1 %>
-        <%=image_tag @logo1%>
-        <%=link_to @url1%>
-        </p>
-        <p>
-        店舗名：<%= @name2 %>
-        <%=image_tag @logo2%>
-        <%=link_to @url2%>
-        </p>
-        <p>
-        店舗名：<%= @name3 %>
-        <%=image_tag @logo3%>
-        <%=link_to @url3%>
-        </p>
-    </div>
-</div>
+            <%@hash.each do |store|%>
+                <div class="row py-3">
+                    <div class="col align-self-center">
+                        <div class="border rounded shadow p-3 mb-5 bg-white rounded" style="padding:10px;">
+                            店舗名：<%= store[:name] %>
+                            <div>
+                                <% if store[:logo] %>
+                                    <%=image_tag store[:logo]%>
+                                <% end %>
+                            </div>
+                            <div>
+                                <% if store[:url] %>
+                                    <%=link_to "詳細ページ", search_select_store_path(store_id:store[:id],logo:store[:logo],name:store[:name],url:store[:url]), :target=>["_blank"] %>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            
+            <% end %>
+
 
 
