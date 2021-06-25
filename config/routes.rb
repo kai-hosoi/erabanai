@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'users#new'
-  get 'search/search'
   get 'search/index'
+  get 'search/search'
   get :login, 'user_sessions/new'
   get :logout, 'user_sessions/destroy'
 
