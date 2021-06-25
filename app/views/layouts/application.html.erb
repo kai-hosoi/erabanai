@@ -8,20 +8,29 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application' %>
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar bg-light">
       <% if current_user %>
-        <%= link_to "Edit Profile", edit_user_path(current_user.id) %>
-        <%= link_to "Logout", :logout, method: :delete %>
+        <%= link_to "登録内容を編集", edit_user_path(current_user.id) %>
+        <%= link_to "検索ページ", search_index_path %>
+        <%= link_to "マイページ", users_mypage_path%>
+        <%= link_to "ログアウト", :logout, method: :post %>
       <% else %>
-        <%= link_to "Register", new_user_path %> |
-        <%= link_to "Login", :login %>
+        <%= link_to "登録", new_user_path %>
+        <%= link_to "検索ページ", search_index_path %>
+        <%= link_to "ログイン", :login %>
       <% end %>
     </nav>
-    <%= yield %>
+
+    <main>
+      <%= render 'layouts/flash_messages' %>
+      <%= yield %>
+    </main>
+    
     <footer class="bg-dark u-content-space-top pb-4" role="footer"> 
     </footer>
   </body>
