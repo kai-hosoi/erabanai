@@ -4,7 +4,7 @@ class SearchController < ApplicationController
   end
 
   def search
-    @search = Search.new(search_params)
+
       area = search_params[:place]
 
       budget = search_params[:budget]
@@ -191,6 +191,26 @@ class SearchController < ApplicationController
           end
         end
 
+        #APIの検索結果で一つも当てはまらない場合、
+        if name.nil?
+          params5 = URI.encode_www_form({key: "29952817473475a8", keyword: area, budget: budget})
+          uri5 = URI.parse("http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?#{params4}")
+          (0..2).each do |i|
+            if doc5.css("shop")[i].nil?
+              name.push("なし")
+              logo.push("なし")
+              url.push("なし")
+              id.push("なし")
+            else
+              name.push(doc5.css("shop")[i].css("> name").first.content)
+              logo.push(doc5.css("shop")[i].css("> logo_image").first.content)
+              url.push(doc5.css("shop")[i].css("> urls").first.content)
+              id.push(doc5.css("shop")[i].css("> id").first.content)
+            end
+          end
+        end
+  
+
         name.uniq
         selected_name = SelectStore.where(user_id:current_user.id).pluck('name')
         name.delete("なし")
@@ -221,7 +241,21 @@ class SearchController < ApplicationController
           id.delete(double_id[i])
         end
 
+
         rundam_number = (0..(name.size-1)).to_a.sample(3)
+        @hash = []
+        rundam_number.each do |i|
+          @hash<<
+          {
+            name: name[i],
+            logo: logo[i],
+            url: url[i],
+            id:  id[i]
+          }
+        end
+
+        debugger
+
 
         @name1 = name[rundam_number[0]]
         @name2 = name[rundam_number[1]]
@@ -247,13 +281,12 @@ class SearchController < ApplicationController
     @select_store.save
     redirect_to params[:url]
   end
+
+  private 
+  def search_params
+    params.permit(:place,:budget,:style,:age,:personality,:color,:number,:sleep,:season)
+  end
   
 end
 
-
-
-private 
-def search_params
-  params.permit(:place,:budget,:style,:age,:personality,:color,:number,:sleep,:season)
-end
 
