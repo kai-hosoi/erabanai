@@ -5,9 +5,22 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
+import { withRouter } from 'react-router-dom';
 
 const Hello = props => (
-  <div>Hello {props.name}!</div>
+  <div className = "container">
+    <div className = "row">
+      <form>
+            <div className="field py-3">
+            <label naem="place">場所(駅名、地名を入力してください)</label>
+              <div>
+                <input type="text" name="place" vale="入力してください" required></input>
+              </div>
+              <input type="button" value="次へ"></input>
+            </div>
+      </form>
+    </div>
+  </div>
 )
 
 Hello.defaultProps = {
@@ -17,6 +30,7 @@ Hello.defaultProps = {
 Hello.propTypes = {
   name: PropTypes.string
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
