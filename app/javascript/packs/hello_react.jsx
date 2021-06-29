@@ -6,6 +6,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom';
+import  Routes  from './route';
+import FirstPage from './firstpage'
+import SecondPage from './secondpage'
+import Sample from './sample'
 
 const Hello = props => (
   <div className = "container">
@@ -23,18 +27,13 @@ const Hello = props => (
   </div>
 )
 
-Hello.defaultProps = {
-  name: 'David'
-}
-
-Hello.propTypes = {
-  name: PropTypes.string
-}
 
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Hello name="React" />,
+    <div>
+      <Routes/>
+    </div>,
     document.body.appendChild(document.createElement('div')),
   )
 })
