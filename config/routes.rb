@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'users/mypage'
   get :login, 'user_sessions/new'
   get :logout, 'user_sessions/destroy'
+  get '/firstpage', to:'react#firstpage'
 
   resources :user_sessions, only: %i[create]
   resources :users

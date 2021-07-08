@@ -31,13 +31,20 @@ class FirstPage extends Component {
 
   render(){
     return(
-      <div>
-        最初のページ
-        <br/>
-        <input type='text' value={this.state.text} onChange={this.handleChange}></input>
-        <p>{this.state.text}</p>
-        <button onClick={this.handleClick}>画面遷移します</button>
+      <div className = "container">
+      <div className = "row">
+        <form>
+              <div className="field py-3">
+              <label naem="place">場所(駅名、地名を入力してください)</label>
+                <div>
+                <input type='text' value={this.state.text} onChange={this.handleChange}></input>
+                <p>{this.state.text}</p>
+                </div>
+                <button className="btn btn-primary" onClick={this.handleClick}>次の質問</button>
+              </div>
+        </form>
       </div>
+    </div>
     );
   }
 }
