@@ -11,7 +11,8 @@ import FirstPage from './firstpage'
 import SecondPage from './secondpage'
 import Sample from './sample'
 
-class Hello extends React.Component{
+
+class Place extends React.Component{
   constructor(props) {
     super(props);
   }
@@ -19,13 +20,13 @@ class Hello extends React.Component{
     return(
       <div className = "container">
       <div className = "row">
-        <form>
-              <div className="field py-3">
+        <form className = "col align-items-center">
+              <div className="border rounded m-3 p-2">
               <label naem="place">場所(駅名、地名を入力してください)</label>
                 <div>
-                  <input type="text" name="place" vale="入力してください" required></input>
+                  <input type="text" name="place" placeholder="入力してください" required></input>
                 </div>
-                <input type="button" value="次へ"></input>
+                <input type="button" value="次へ" onClick={() => this.props.State(this.props.num)}></input>
               </div>
         </form>
       </div>
@@ -34,7 +35,7 @@ class Hello extends React.Component{
   }
   }
 
-class Ola extends React.Component{
+class Budget extends React.Component{
   constructor(props) {
     super(props);
   }
@@ -42,13 +43,27 @@ class Ola extends React.Component{
     return(
       <div className = "container">
         <div className = "row">
-          <form>
-          <div className="field py-3">
-            <label naem="place">Hallo</label>
-              <div>
-                <input type="text" name="place" vale="入力してください" required></input>
-              </div>
-              <input type="button" value="次へ" onClick={() => this.props.State(this.props.tum)}></input>
+          <form className = "col align-items-center">
+            <div className="border rounded m-3 p-2">
+              <label name="place">予算</label>
+                <div>
+                  <label>
+                    <input type="radio" name="budget" vale="B002" required></input>3000円
+                  </label>
+                </div>
+                <div>
+                  <label>
+                    <input type="radio" name="budget" vale="B008" required></input>5000円
+                  </label>
+                </div>
+                <div>
+                  <label>
+                    <input type="radio" name="budget" vale="B005" required></input>10000円
+                  </label>
+                </div>
+                <div>
+                  <input type="button" value="次へ" onClick={() => this.props.State(this.props.num)}></input>
+                </div>
             </div>
           </form>
         </div>
@@ -57,32 +72,98 @@ class Ola extends React.Component{
   }
   }
 
+  class Style extends React.Component{
+    constructor(props) {
+      super(props);
+    }
+    render(){
+      return(
+        <div className = "container">
+        <div className = "row">
+          <form className = "col align-items-center">
+                <div className="border rounded m-3 p-2">
+                  <label naem="place">インドアですか？アウトドアですか？</label>
+                    <div>
+                      <label>
+                        <input type="radio" name="style" value="0" required></input>インドア派
+                      </label>
+                    </div>
+                    <div>
+                      <label>
+                        <input type="radio" name="style" value="1" required></input>アウトドア派
+                      </label>
+                    </div>
+                    <input type="button" value="次へ" onClick={() => this.props.State(this.props.num)}></input>
+                </div>
+          </form>
+        </div>
+      </div>
+      );
+    }
+    }
+  
+    class Age extends React.Component{
+      constructor(props) {
+        super(props);
+      }
+      render(){
+        return(
+          <div className = "container">
+            <div className = "row">
+              <form className = "col align-items-center">
+                    <div className="border rounded m-3 p-2">
+                    <label name="place">年齢</label>
+                    <div>
+                      <label>
+                        <input type="radio" name="age" value="10" required></input>10-20代
+                      </label>
+                    </div>
+                    <div>
+                      <label>
+                        <input type="radio" name="age" value="30" required></input>30-40代
+                      </label>
+                    </div>
+                    <div>
+                      <label>
+                        <input type="radio" name="age" value="50" required></input>50-60代
+                      </label>
+                    </div>
+                      <input type="submit" value="送信" ></input>
+                    </div>
+              </form>
+            </div>
+        </div>
+        );
+      }
+      }
+    
+      
+
   class Parent extends React.Component{
     constructor(props) {
       super(props);
-      this.state = {tum: 1, tw: 10};
+      this.state = {num: 1, tw: 10};
     }
 
     onButtonClick = (state) => {
-      this.setState({ tum: state+1 });
+      this.setState({ num: state+1 });
     };
   
 
     render(){
-      console.log(this.state.tum)
-      const { tum } = this.state
+      console.log(this.state.num)
+      const { num } = this.state
       return(
         <div>
-          {tum === 1 && <Ola State={(state) => this.onButtonClick(state)} tum={tum}/>}
-          {function() {if(tum===2) return <Hello State={(state) => this.onButtonClick(state)} tum={tum}/> }()}
+          {num === 1 && <Place State={(state) => this.onButtonClick(state)} num={num}/>}
+          {num === 2 && <Budget State={(state) => this.onButtonClick(state)} num={num}/>}
+          {num === 3 && <Style State={(state) => this.onButtonClick(state)} num={num}/>}
+          {num === 4 && <Age State={(state) => this.onButtonClick(state)} num={num}/>}
         </div>
       )
     }
   }
   
-
-
-
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
@@ -90,3 +171,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(document.createElement('div')),
   )
 })
+var textbox = document.getElementById("place")
+var data = {
+  place: textbox.value
+}
+
+console.log(data)
