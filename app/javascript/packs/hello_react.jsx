@@ -15,6 +15,12 @@ import Sample from './sample'
 class Place extends React.Component{
   constructor(props) {
     super(props);
+    this.state = {place:""};
+    this.handleChange = this.handleChange.bind(this);
+    }
+  handleChange(event) {
+    this.setState({place: event.target.value});
+    console.log(this.state)
   }
   render(){
     return(
@@ -22,9 +28,9 @@ class Place extends React.Component{
       <div className = "row">
         <form className = "col align-items-center">
               <div className="border rounded m-3 p-2">
-              <label naem="place">場所(駅名、地名を入力してください)</label>
+              <label name="place">場所(駅名、地名を入力してください)</label>
                 <div>
-                  <input type="text" name="place" placeholder="入力してください" required></input>
+                  <input type="text" name="place" placeholder="入力してください" value={this.state.value} onChange={this.handleChange} required></input>
                 </div>
                 <input type="button" value="次へ" onClick={() => this.props.State(this.props.num)}></input>
               </div>
@@ -33,7 +39,7 @@ class Place extends React.Component{
     </div>
     );
   }
-  }
+}
 
 class Budget extends React.Component{
   constructor(props) {
@@ -102,47 +108,47 @@ class Budget extends React.Component{
     }
     }
   
-    class Age extends React.Component{
-      constructor(props) {
-        super(props);
-      }
-      render(){
-        return(
-          <div className = "container">
-            <div className = "row">
-              <form className = "col align-items-center">
-                    <div className="border rounded m-3 p-2">
-                    <label name="place">年齢</label>
-                    <div>
-                      <label>
-                        <input type="radio" name="age" value="10" required></input>10-20代
-                      </label>
-                    </div>
-                    <div>
-                      <label>
-                        <input type="radio" name="age" value="30" required></input>30-40代
-                      </label>
-                    </div>
-                    <div>
-                      <label>
-                        <input type="radio" name="age" value="50" required></input>50-60代
-                      </label>
-                    </div>
-                      <input type="submit" value="送信" ></input>
-                    </div>
-              </form>
-            </div>
-        </div>
-        );
-      }
-      }
+  class Age extends React.Component{
+    constructor(props) {
+      super(props);
+    }
+    render(){
+      return(
+        <div className = "container">
+          <div className = "row">
+            <form className = "col align-items-center">
+                  <div className="border rounded m-3 p-2">
+                  <label name="place">年齢</label>
+                  <div>
+                    <label>
+                      <input type="radio" name="age" value="10" required></input>10-20代
+                    </label>
+                  </div>
+                  <div>
+                    <label>
+                      <input type="radio" name="age" value="30" required></input>30-40代
+                    </label>
+                  </div>
+                  <div>
+                    <label>
+                      <input type="radio" name="age" value="50" required></input>50-60代
+                    </label>
+                  </div>
+                    <input type="submit" value="送信" ></input>
+                  </div>
+            </form>
+          </div>
+      </div>
+      );
+    }
+    }
     
       
 
-  class Parent extends React.Component{
+  class App extends React.Component{
     constructor(props) {
       super(props);
-      this.state = {num: 1, tw: 10};
+      this.state = {num: 1};
     }
 
     onButtonClick = (state) => {
@@ -152,6 +158,7 @@ class Budget extends React.Component{
 
     render(){
       console.log(this.state.num)
+      console.log(data)
       const { num } = this.state
       return(
         <div>
@@ -167,7 +174,7 @@ class Budget extends React.Component{
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Parent/>,
+    <App/>,
     document.body.appendChild(document.createElement('div')),
   )
 })
@@ -176,4 +183,4 @@ var data = {
   place: textbox.value
 }
 
-console.log(data)
+
