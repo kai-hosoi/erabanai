@@ -5,7 +5,7 @@ class SearchController < ApplicationController
 
   def search
     search = Search.new(search_params)
-    # binding.irb
+    binding.irb
     if search.invalid?
       flash.now[:danger] = "すべての項目を入力してください"
       render 'index'

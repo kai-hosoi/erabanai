@@ -112,7 +112,7 @@ class Budget extends React.Component{
       return(
         <div className = "container">
           <div className = "row">
-            <form className = "col align-items-center" onSubmit={() => this.props.handleSubmit()}>
+            <div className = "col align-items-center" >
                   <div className="border rounded m-3 p-2">
                   <label name="place">年齢</label>
                   <div>
@@ -130,9 +130,9 @@ class Budget extends React.Component{
                       <input type="radio" name="age" value="50" checked={this.props.age === '50'} onChange={this.props.onValueChange} required></input>50-60代
                     </label>
                   </div>
-                    <input type="submit" value="送信" ></input>
+                    <input type="submit" value="送信" onClick={() => this.props.handleSubmit()}></input>
                   </div>
-            </form>
+            </div>
           </div>
       </div>
       );
@@ -175,15 +175,11 @@ class Budget extends React.Component{
     }
 
     handleSubmit(state) {
-      console.log(state)
-      axios
-        .get('http://localhost:3000/search/search',{ params: state})
-        .then((results) => { console.log(results); })
-        .catch(console.error);
+      window.location.href = "search/search?place=${state.place}&style=${state.style}"
     }
 
     render(){
-      // console.log(this.state)
+      console.log(this.state)
       const { num,place,budget,style,age} = this.state
       let simpleDataJSON = JSON.stringify(this.state);
       // console.log(simpleDataJSON);
@@ -193,7 +189,7 @@ class Budget extends React.Component{
           {num === 1 && <Place State={(state) => this.onButtonClick(state)} num={num} place={place} handleChange={(event) => this.handleChange(event)}/>}
           {num === 2 && <Budget State={(state) => this.onButtonClick(state)} num={num} budget={budget} onValueChange={(event) =>this.onValueChange(event)}/>}
           {num === 3 && <Style State={(state) => this.onButtonClick(state)} num={num} style={style} onValueChange={(event) =>this.onValueChange2(event)}/>}
-          {num === 4 && <Age State={(state) => this.onButtonClick(state)} num={num} age={age} onValueChange={(event) =>this.onValueChange3(event)} handleSubmit={(event) => this.handleSubmit(this.state)}/>}
+          {num === 4 && <Age State={(state) => this.onButtonClick(state)} num={num} age={age} onValueChange={(event) =>this.onValueChange3(event)} handleSubmit={() => this.handleSubmit(this.state)}/>}
         </div>
       )
     }
