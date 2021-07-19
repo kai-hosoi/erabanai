@@ -5,7 +5,6 @@ class SearchController < ApplicationController
 
   def search
     search = Search.new(search_params)
-    binding.irb
     if search.invalid?
       flash.now[:danger] = "すべての項目を入力してください"
       render 'index'
@@ -225,8 +224,6 @@ class SearchController < ApplicationController
         (0..double_id.size).each do |i|
           id.delete(double_id[i])
         end
-
-        debugger
 
         #APIの検索結果で一つも当てはまらない場合、
         if name.empty?
