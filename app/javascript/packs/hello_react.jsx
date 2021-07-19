@@ -192,22 +192,22 @@ class Color extends React.Component{
                 <label name="place">どの色が一番好きなですか？</label>
                 <div>
                   <label>
-                    <input type="radio" name="color" value="0" checked={this.props.age === '0'} onChange={this.props.onValueChange} required></input>赤色
+                    <input type="radio" name="color" value="0" checked={this.props.color === '0'} onChange={this.props.onValueChange} required></input>赤色
                   </label>
                 </div>
                 <div>
                   <label>
-                    <input type="radio" name="color" value="1" checked={this.props.age === '1'} onChange={this.props.onValueChange} required></input>青色
+                    <input type="radio" name="color" value="1" checked={this.props.color === '1'} onChange={this.props.onValueChange} required></input>青色
                   </label>
                 </div>
                 <div>
                   <label>
-                    <input type="radio" name="color" value="2" checked={this.props.age === '2'} onChange={this.props.onValueChange} required></input>黄色
+                    <input type="radio" name="color" value="2" checked={this.props.color === '2'} onChange={this.props.onValueChange} required></input>黄色
                   </label>
                 </div>
                 <div>
                   <label>
-                    <input type="radio" name="color" value="3" checked={this.props.age === '3'} onChange={this.props.onValueChange} required></input>緑色
+                    <input type="radio" name="color" value="3" checked={this.props.color === '3'} onChange={this.props.onValueChange} required></input>緑色
                   </label>
                 </div>
 
@@ -311,7 +311,7 @@ class Season extends React.Component{
                   </label>
                 </div>
 
-                  <input type="submit" value="送信" onClick={() => this.props.handleSubmit()}></input>
+                  <input type="submit" value="送信" onClick={(state) => this.props.handleSubmit(state)}></input>
                 </div>
           </div>
         </div>
@@ -386,8 +386,7 @@ class Season extends React.Component{
 
 
     handleSubmit(state) {
-      const { num,place,budget,style,age,personality,color,number,sleep,season} = this.state
-      window.location.href = "search?place={state.place}&budget=${state.budget}&style=${state.style}&age=${state.age}&personality=${state.personality}&color=${state.color}&number=${state.number}&sleep=${state.sleep}&season=${state.season}"
+      window.location.href = `search/search?place=${state.place}&budget=${state.budget}&style=${state.style}&age=${state.age}&personality=${state.personality}&color=${state.color}&number=${state.number}&sleep=${state.sleep}&season=${state.season}`
     }
 
     render(){
