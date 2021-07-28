@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   root 'search#index'
-  get 'users/new'
-  get 'search/index'
   get 'search/search'
   get 'search/select_store'
   get 'users/mypage'
@@ -10,6 +8,6 @@ Rails.application.routes.draw do
   get '/firstpage', to:'react#firstpage'
 
   resources :user_sessions, only: %i[create]
-  resources :users
+  resources :users, only: %i[new edit create]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

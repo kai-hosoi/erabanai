@@ -368,9 +368,8 @@ class Season extends React.Component{
     }
 
     onValueChange5(event) {
-      this.setState({
-        color: event.target.value
-      });
+      this.setState(event);
+
     }
 
     onValueChange6(event) {
@@ -401,8 +400,8 @@ class Season extends React.Component{
           {num === 2 && <Budget State={(state) => this.onButtonClick(state)} num={num} budget={budget} onValueChange={(event) =>this.onValueChange(event)}/>}
           {num === 3 && <Style State={(state) => this.onButtonClick(state)} num={num} style={style} onValueChange={(event) =>this.onValueChange2(event)}/>}
           {num === 4 && <Age State={(state) => this.onButtonClick(state)} num={num} age={age} onValueChange={(event) =>this.onValueChange3(event)}/>}
-          {num === 5 && <Personality State={(state) => this.onButtonClick(state)} num={num} personality={personality} onValueChange={(event) =>this.onValueChange4(event)}/>}
-          {num === 6 && <Color State={(state) => this.onButtonClick(state)} num={num} color={color} onValueChange={(event) =>this.onValueChange5(event)} />}
+          {num === 5 && <Personality State={(state) => this.onButtonClick(state)} num={num} personality={personality} onValueChange={(event) =>this.onValueChange5({personality: event.target.value})}/>}
+          {num === 6 && <Color State={(state) => this.onButtonClick(state)} num={num} color={color} onValueChange={(event) =>this.onValueChange5({color: event.target.value})} />}
           {num === 7 && <Number State={(state) => this.onButtonClick(state)} num={num} number={number} handleChange={(event) =>this.handleChange2(event)} />}
           {num === 8 && <Sleep State={(state) => this.onButtonClick(state)} num={num} sleep={sleep} onValueChange={(event) =>this.onValueChange6(event)} />}
           {num === 9 && <Season State={(state) => this.onButtonClick(state)} num={num} season={season} onValueChange={(event) =>this.onValueChange7(event)} handleSubmit={() => this.handleSubmit(this.state)}/>}
@@ -417,10 +416,6 @@ class Season extends React.Component{
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <App/>,
-    document.body.appendChild(document.createElement('div')),
+    document.getElementById("root"),
   )
 })
-
-
-
-
