@@ -19,19 +19,24 @@ class Place extends React.Component{
     }
   render(){
     return(
+      
       <div className = "container">
-      <div className = "row">
-        <form className = "col align-items-center">
+        <div className = "row">
+          <div className = "col align-items-center">
+            <form >
               <div className="border rounded m-3 p-2">
               <label name="place">場所(駅名、地名を入力してください)</label>
                 <div>
                   <input type="text" name="place" placeholder="入力してください" value={this.props.place.value} onChange={this.props.handleChange} required></input>
                 </div>
-                <input type="button" value="次へ" onClick={() => this.props.State(this.props.num)}></input>
+                <div>
+                  <input type="button" value="次へ" onClick={() => this.props.State(this.props.num)}></input>
+                </div>
               </div>
-        </form>
+            </form>
+          </div>
+        </div>
       </div>
-    </div>
     );
   }
 }
@@ -64,6 +69,7 @@ class Budget extends React.Component{
                   </label>
                 </div>
                 <div>
+                  <input type="submit" value="戻る" onClick={() => this.props.State2(this.props.num)}></input>
                   <input type="button" value="次へ" onClick={() => this.props.State(this.props.num)}></input>
                 </div>
             </div>
@@ -95,7 +101,10 @@ class Style extends React.Component{
                       <input type="radio" name="style" value="1" checked={this.props.style === '1'} onChange={this.props.onValueChange} required></input>アウトドア派
                     </label>
                   </div>
-                  <input type="button" value="次へ" onClick={() => this.props.State(this.props.num)}></input>
+                  <div>
+                    <input type="submit" value="戻る" onClick={() => this.props.State2(this.props.num)}></input>
+                    <input type="button" value="次へ" onClick={() => this.props.State(this.props.num)}></input>
+                  </div>
               </div>
         </form>
       </div>
@@ -130,6 +139,7 @@ class Age extends React.Component{
                     <input type="radio" name="age" value="50" checked={this.props.age === '50'} onChange={this.props.onValueChange} required></input>50-60代
                   </label>
                 </div>
+                  <input type="submit" value="戻る" onClick={() => this.props.State2(this.props.num)}></input>
                   <input type="submit" value="次へ" onClick={() => this.props.State(this.props.num)}></input>
                 </div>
           </div>
@@ -170,6 +180,7 @@ class Personality extends React.Component{
                     <input type="radio" name="personality" value="4" checked={this.props.personality === '4'} onChange={this.props.onValueChange} required></input>マイペース
                   </label>
                 </div>
+                  <input type="submit" value="戻る" onClick={() => this.props.State2(this.props.num)}></input>
                   <input type="submit" value="次へ" onClick={() => this.props.State(this.props.num)}></input>
                 </div>
           </div>
@@ -210,7 +221,7 @@ class Color extends React.Component{
                     <input type="radio" name="color" value="3" checked={this.props.color === '3'} onChange={this.props.onValueChange} required></input>緑色
                   </label>
                 </div>
-
+                  <input type="submit" value="戻る" onClick={() => this.props.State2(this.props.num)}></input>
                   <input type="submit" value="次へ" onClick={() => this.props.State(this.props.num)}></input>
                 </div>
           </div>
@@ -234,6 +245,7 @@ class Number extends React.Component{
                 <div>
                   <input type="text" name="number" placeholder="１〜９の中で一番好きな数字を入力してください" value={this.props.number.value} onChange={this.props.handleChange} required></input>
                 </div>
+                  <input type="submit" value="戻る" onClick={() => this.props.State2(this.props.num)}></input>
                   <input type="submit" value="次へ" onClick={() => this.props.State(this.props.num)}></input>
                 </div>
           </div>
@@ -269,7 +281,7 @@ class Sleep extends React.Component{
                     <input type="radio" name="sleep" value="2" checked={this.props.sleep === '2'} onChange={this.props.onValueChange} required></input>8〜10時間
                   </label>
                 </div>
-
+                  <input type="submit" value="戻る" onClick={() => this.props.State2(this.props.num)}></input>
                   <input type="submit" value="次へ" onClick={() => this.props.State(this.props.num)}></input>
                 </div>
           </div>
@@ -310,8 +322,10 @@ class Season extends React.Component{
                     <input type="radio" name="season" value="4" checked={this.props.season === '4'} onChange={this.props.onValueChange} required></input>冬
                   </label>
                 </div>
-
-                  <input type="submit" value="送信" onClick={(state) => this.props.handleSubmit(state)}></input>
+                  <div>
+                    <input type="submit" value="戻る" onClick={() => this.props.State2(this.props.num)}></input>
+                    <input type="submit" value="送信" onClick={(state) => this.props.handleSubmit(state)}></input>
+                  </div>
                 </div>
           </div>
         </div>
@@ -329,9 +343,15 @@ class Season extends React.Component{
       this.onValueChange = this.onValueChange.bind(this);
     }
 
+
     onButtonClick = (state) => {
       this.setState({ num: state+1 });
     };
+
+    onButtonClick2 = (state) => {
+      this.setState({ num: state-1 });
+    };
+
     handleChange(event) {
       this.setState({
         place: event.target.value
@@ -396,15 +416,15 @@ class Season extends React.Component{
       // console.log()
       return(
         <div>
-          {num === 1 && <Place State={(state) => this.onButtonClick(state)} num={num} place={place} handleChange={(event) => this.handleChange(event)}/>}
-          {num === 2 && <Budget State={(state) => this.onButtonClick(state)} num={num} budget={budget} onValueChange={(event) =>this.onValueChange(event)}/>}
-          {num === 3 && <Style State={(state) => this.onButtonClick(state)} num={num} style={style} onValueChange={(event) =>this.onValueChange2(event)}/>}
-          {num === 4 && <Age State={(state) => this.onButtonClick(state)} num={num} age={age} onValueChange={(event) =>this.onValueChange3(event)}/>}
-          {num === 5 && <Personality State={(state) => this.onButtonClick(state)} num={num} personality={personality} onValueChange={(event) =>this.onValueChange5({personality: event.target.value})}/>}
-          {num === 6 && <Color State={(state) => this.onButtonClick(state)} num={num} color={color} onValueChange={(event) =>this.onValueChange5({color: event.target.value})} />}
-          {num === 7 && <Number State={(state) => this.onButtonClick(state)} num={num} number={number} handleChange={(event) =>this.handleChange2(event)} />}
-          {num === 8 && <Sleep State={(state) => this.onButtonClick(state)} num={num} sleep={sleep} onValueChange={(event) =>this.onValueChange6(event)} />}
-          {num === 9 && <Season State={(state) => this.onButtonClick(state)} num={num} season={season} onValueChange={(event) =>this.onValueChange7(event)} handleSubmit={() => this.handleSubmit(this.state)}/>}
+          {num === 1 && <Place State={(state) => this.onButtonClick(state)} State2={(state) => this.onButtonClick2(state)} num={num} place={place} handleChange={(event) => this.handleChange(event)}/>}
+          {num === 2 && <Budget State={(state) => this.onButtonClick(state)} State2={(state) => this.onButtonClick2(state)} num={num} budget={budget} onValueChange={(event) =>this.onValueChange(event)}/>}
+          {num === 3 && <Style State={(state) => this.onButtonClick(state)} State2={(state) => this.onButtonClick2(state)} num={num} style={style} onValueChange={(event) =>this.onValueChange2(event)}/>}
+          {num === 4 && <Age State={(state) => this.onButtonClick(state)} State2={(state) => this.onButtonClick2(state)} num={num} age={age} onValueChange={(event) =>this.onValueChange3(event)}/>}
+          {num === 5 && <Personality State={(state) => this.onButtonClick(state)} State2={(state) => this.onButtonClick2(state)} num={num} personality={personality} onValueChange={(event) =>this.onValueChange5({personality: event.target.value})}/>}
+          {num === 6 && <Color State={(state) => this.onButtonClick(state)} State2={(state) => this.onButtonClick2(state)} num={num} color={color} onValueChange={(event) =>this.onValueChange5({color: event.target.value})} />}
+          {num === 7 && <Number State={(state) => this.onButtonClick(state)} State2={(state) => this.onButtonClick2(state)} num={num} number={number} handleChange={(event) =>this.handleChange2(event)} />}
+          {num === 8 && <Sleep State={(state) => this.onButtonClick(state)} State2={(state) => this.onButtonClick2(state)} num={num} sleep={sleep} onValueChange={(event) =>this.onValueChange6(event)} />}
+          {num === 9 && <Season State={(state) => this.onButtonClick(state)} State2={(state) => this.onButtonClick2(state)} num={num} season={season} onValueChange={(event) =>this.onValueChange7(event)} handleSubmit={() => this.handleSubmit(this.state)}/>}
 
 
         </div>
