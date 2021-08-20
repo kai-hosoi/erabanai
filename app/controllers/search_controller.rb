@@ -195,34 +195,44 @@ class SearchController < ApplicationController
           end
         end
 
-        name.uniq
-        selected_name = SelectStore.where(user_id:current_user.id).pluck('name')
-        name.delete("なし")
-        double_name = name & selected_name
-        (0..double_name.size).each do |i|
-          name.delete(double_name[i])
-        end
-        logo.uniq
-        logo.delete("なし")
-        selected_logo = SelectStore.where(user_id:current_user.id).pluck('logo')
-        double_logo = logo & selected_logo
-        (0..double_logo.size).each do |i|
-          logo.delete(double_logo[i])
-        end
-        url.uniq
-        url.delete("なし")
-        selected_url = SelectStore.where(user_id:current_user.id).pluck('url')
-        double_url = url & selected_url
-        (0..double_url.size).each do |i|
-          url.delete(double_url[i])
-        end
-
-        id.uniq
-        id.delete("なし")
-        selected_id = SelectStore.where(user_id:current_user.id).pluck('id')
-        double_id = id & selected_id
-        (0..double_id.size).each do |i|
-          id.delete(double_id[i])
+        if current_user
+          name.uniq
+          selected_name = SelectStore.where(user_id:current_user.id).pluck('name')
+          name.delete("なし")
+          double_name = name & selected_name
+          (0..double_name.size).each do |i|
+            name.delete(double_name[i])
+          end
+          logo.uniq
+          logo.delete("なし")
+          selected_logo = SelectStore.where(user_id:current_user.id).pluck('logo')
+          double_logo = logo & selected_logo
+          (0..double_logo.size).each do |i|
+            logo.delete(double_logo[i])
+          end
+          url.uniq
+          url.delete("なし")
+          selected_url = SelectStore.where(user_id:current_user.id).pluck('url')
+          double_url = url & selected_url
+          (0..double_url.size).each do |i|
+            url.delete(double_url[i])
+          end
+          id.uniq
+          id.delete("なし")
+          selected_id = SelectStore.where(user_id:current_user.id).pluck('id')
+          double_id = id & selected_id
+          (0..double_id.size).each do |i|
+            id.delete(double_id[i])
+          end
+        else
+          name.uniq
+          name.delete("なし")
+          logo.uniq
+          logo.delete("なし")
+          url.uniq
+          url.delete("なし")
+          id.uniq
+          id.delete("なし")
         end
 
         #APIの検索結果で一つも当てはまらない場合、
