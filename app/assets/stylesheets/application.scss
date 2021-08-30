@@ -15,3 +15,22 @@
  */
  // Custom bootstrap variables must be set or imported *before* bootstrap.
  @import "bootstrap";
+
+body{
+    background-image:  image-url('records/bread-2178874_1920.jpg');
+    background-size:  cover;
+}
+
+main{
+    box-sizing: border-box;
+    top:100px;
+    width: 100%;
+    padding-bottom:30px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+form{
+    background-color:#FF7F50;
+}
