@@ -13,6 +13,7 @@
   </head>
 
   <body>
+
     <nav class="navbar bg-light sticky-top">
       <% if current_user %>
         <%= link_to "登録内容を編集", edit_user_path(current_user.id) %>
@@ -33,5 +34,6 @@
     
     <footer class="bg-dark u-content-space-top pb-4 fixed-bottom" role="footer"> 
     </footer>
+
   </body>
 </html>
