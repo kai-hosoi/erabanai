@@ -22,7 +22,7 @@ class Place extends React.Component{
       
       <div className = "container">
         <div className = "row">
-            <form className="border rounded m-3 p-2 col align-items-center">
+            <div className="border rounded m-3 p-2 col align-items-center form">
               <label name="place">場所(駅名、地名を入力してください)</label>
                 <div>
                   <input type="text" name="place" placeholder="入力してください" value={this.props.place.value} onChange={this.props.handleChange} required></input>
@@ -30,7 +30,7 @@ class Place extends React.Component{
                 <div>
                   <input type="button" value="次へ" onClick={() => this.props.State(this.props.num)}></input>
                 </div>
-            </form>
+            </div>
         </div>
       </div>
     );
@@ -46,7 +46,7 @@ class Budget extends React.Component{
     return(
       <div className = "container">
         <div className = "row">
-          <form className="border rounded m-3 p-2 col align-items-center">
+          <div className="border rounded m-3 p-2 col align-items-center form">
             <label name="place">予算</label>
               <div>
                 <label>
@@ -67,7 +67,7 @@ class Budget extends React.Component{
                 <input type="submit" value="戻る" onClick={() => this.props.State2(this.props.num)}></input>
                 <input type="button" value="次へ" onClick={() => this.props.State(this.props.num)}></input>
               </div>
-          </form>
+          </div>
         </div>
       </div>
     );
@@ -82,7 +82,7 @@ class Style extends React.Component{
     return(
       <div className = "container">
       <div className = "row">
-        <form className="border rounded m-3 p-2 col align-items-center">
+        <div className="border rounded m-3 p-2 col align-items-center form">
           <label naem="place">インドアですか？アウトドアですか？</label>
             <div>
               <label>
@@ -98,7 +98,7 @@ class Style extends React.Component{
               <input type="submit" value="戻る" onClick={() => this.props.State2(this.props.num)}></input>
               <input type="button" value="次へ" onClick={() => this.props.State(this.props.num)}></input>
             </div>
-        </form>
+        </div>
       </div>
     </div>
     );
@@ -113,7 +113,7 @@ class Age extends React.Component{
     return(
       <div className = "container">
         <div className = "row">
-          <form className="border rounded m-3 p-2 col align-items-center">
+          <div className="border rounded m-3 p-2 col align-items-center form">
                 <label name="place">年齢</label>
                 <div>
                   <label>
@@ -134,7 +134,7 @@ class Age extends React.Component{
                   <input type="submit" value="戻る" onClick={() => this.props.State2(this.props.num)}></input>
                   <input type="submit" value="次へ" onClick={() => this.props.State(this.props.num)}></input>
                 </div>
-          </form>
+          </div>
         </div>
     </div>
     );
@@ -149,7 +149,7 @@ class Personality extends React.Component{
     return(
       <div className = "container">
         <div className = "row">
-          <form className="border rounded m-3 p-2 col align-items-center">
+          <div className="border rounded m-3 p-2 col align-items-center form">
                 <label name="place">性格</label>
                 <div>
                   <label>
@@ -175,7 +175,7 @@ class Personality extends React.Component{
                   <input type="submit" value="戻る" onClick={() => this.props.State2(this.props.num)}></input>
                   <input type="submit" value="次へ" onClick={() => this.props.State(this.props.num)}></input>
                 </div>
-          </form>
+          </div>
         </div>
     </div>
     );
@@ -190,7 +190,7 @@ class Color extends React.Component{
     return(
       <div className = "container">
         <div className = "row">
-          <form className="border rounded m-3 p-2 col align-items-center">
+          <div className="border rounded m-3 p-2 col align-items-center form">
                 <label name="place">どの色が一番好きなですか？</label>
                 <div>
                   <label>
@@ -216,7 +216,7 @@ class Color extends React.Component{
                   <input type="submit" value="戻る" onClick={() => this.props.State2(this.props.num)}></input>
                   <input type="submit" value="次へ" onClick={() => this.props.State(this.props.num)}></input>
                 </div>
-          </form>
+          </div>
         </div>
     </div>
     );
@@ -231,7 +231,7 @@ class Number extends React.Component{
     return(
       <div className = "container">
         <div className = "row">
-          <form className="border rounded m-3 p-2 col align-items-center">
+          <div className="border rounded m-3 p-2 col align-items-center form">
                 <label name="place">好きな数字はなんですか？（１〜９）</label>
                 <div>
                   <input type="text" name="number" placeholder="１〜９の中で一番好きな数字を入力してください" value={this.props.number.value} onChange={this.props.handleChange} required></input>
@@ -240,7 +240,7 @@ class Number extends React.Component{
                   <input type="submit" value="戻る" onClick={() => this.props.State2(this.props.num)}></input>
                   <input type="submit" value="次へ" onClick={() => this.props.State(this.props.num)}></input>
                 </div>
-          </form>
+          </div>
         </div>
     </div>
     );
@@ -255,7 +255,7 @@ class Sleep extends React.Component{
     return(
       <div className = "container">
         <div className = "row">
-          <form className="border rounded m-3 p-2 col align-items-center">
+          <div className="border rounded m-3 p-2 col align-items-center form">
                 <label name="place">何時間寝ますか？</label>
                 <div>
                   <label>
@@ -276,7 +276,7 @@ class Sleep extends React.Component{
                   <input type="submit" value="戻る" onClick={() => this.props.State2(this.props.num)}></input>
                   <input type="submit" value="次へ" onClick={() => this.props.State(this.props.num)}></input>
                 </div>
-          </form>
+          </div>
         </div>
     </div>
     );
@@ -291,8 +291,8 @@ class Season extends React.Component{
     return(
       <div className = "container">
         <div className = "row">
-          <form className="border rounded m-3 p-2 col align-items-center">
-                <label name="place">好きな季節はなんですか？</label>
+          <div className="border rounded m-3 p-2 col align-items-center form">
+              <label name="place">好きな季節はなんですか？</label>
                 <div>
                   <label>
                     <input type="radio" name="season" value="1" checked={this.props.season === '1'} onChange={this.props.onValueChange} required></input>春
@@ -313,11 +313,11 @@ class Season extends React.Component{
                     <input type="radio" name="season" value="4" checked={this.props.season === '4'} onChange={this.props.onValueChange} required></input>冬
                   </label>
                 </div>
-                  <div>
+                <div>
                     <input type="submit" value="戻る" onClick={() => this.props.State2(this.props.num)}></input>
                     <input type="submit" value="送信" onClick={(state) => this.props.handleSubmit(state)}></input>
-                  </div>
-          </form>
+                </div>
+          </div>
         </div>
     </div>
     );
