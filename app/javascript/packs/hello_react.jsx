@@ -20,9 +20,9 @@ class Place extends React.Component{
   render(){
     return(
       
-      <div className = "container">
+      <div className = "container main">
         <div className = "row">
-            <div className="border rounded m-3 p-2 col align-items-center form">
+            <div className="border rounded m-3 p-2 col align-items-center form ">
               <label name="place">場所(駅名、地名を入力してください)</label>
                 <div>
                   <input type="text" name="place" placeholder="入力してください" value={this.props.place.value} onChange={this.props.handleChange} required></input>
@@ -44,7 +44,7 @@ class Budget extends React.Component{
 
   render(){
     return(
-      <div className = "container">
+      <div className = "container main">
         <div className = "row">
           <div className="border rounded m-3 p-2 col align-items-center form">
             <label name="place">予算</label>
@@ -80,7 +80,7 @@ class Style extends React.Component{
   }
   render(){
     return(
-      <div className = "container">
+      <div className = "container main">
       <div className = "row">
         <div className="border rounded m-3 p-2 col align-items-center form">
           <label naem="place">インドアですか？アウトドアですか？</label>
@@ -111,7 +111,7 @@ class Age extends React.Component{
   }
   render(){
     return(
-      <div className = "container">
+      <div className = "container main">
         <div className = "row">
           <div className="border rounded m-3 p-2 col align-items-center form">
                 <label name="place">年齢</label>
@@ -147,7 +147,7 @@ class Personality extends React.Component{
   }
   render(){
     return(
-      <div className = "container">
+      <div className = "container main">
         <div className = "row">
           <div className="border rounded m-3 p-2 col align-items-center form">
                 <label name="place">性格</label>
@@ -188,7 +188,7 @@ class Color extends React.Component{
   }
   render(){
     return(
-      <div className = "container">
+      <div className = "container main">
         <div className = "row">
           <div className="border rounded m-3 p-2 col align-items-center form">
                 <label name="place">どの色が一番好きなですか？</label>
@@ -229,7 +229,7 @@ class Number extends React.Component{
   }
   render(){
     return(
-      <div className = "container">
+      <div className = "container main">
         <div className = "row">
           <div className="border rounded m-3 p-2 col align-items-center form">
                 <label name="place">好きな数字はなんですか？（１〜９）</label>
@@ -253,7 +253,7 @@ class Sleep extends React.Component{
   }
   render(){
     return(
-      <div className = "container">
+      <div className = "container main">
         <div className = "row">
           <div className="border rounded m-3 p-2 col align-items-center form">
                 <label name="place">何時間寝ますか？</label>
@@ -289,7 +289,7 @@ class Season extends React.Component{
   }
   render(){
     return(
-      <div className = "container">
+      <div className = "container main">
         <div className = "row">
           <div className="border rounded m-3 p-2 col align-items-center form">
               <label name="place">好きな季節はなんですか？</label>
