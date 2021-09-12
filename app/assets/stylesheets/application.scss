@@ -16,11 +16,12 @@
  // Custom bootstrap variables must be set or imported *before* bootstrap.
  @import "bootstrap";
 
+//背景画像挿入
 body{
     background-image:  image-url('records/background.jpg');
     background-size:  cover;
 }
-
+//フォーム表示中のメインを中央にしたかったので変更
 .main{
     box-sizing: border-box;
     top:100px;
@@ -31,6 +32,7 @@ body{
     transform: translateY(-50%);
 }
 
+//フォームの背景の色変更
 .form{
     background-color:#FF7F50;
 }

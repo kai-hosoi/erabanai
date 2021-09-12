@@ -258,6 +258,7 @@ class SearchController < ApplicationController
     end
   end
 
+  #APIを叩いてとってきた結果
   def select_store
     @select_store = SelectStore.new
     @select_store.user_id = current_user.id
