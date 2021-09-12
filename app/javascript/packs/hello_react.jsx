@@ -12,7 +12,7 @@ import SecondPage from './secondpage'
 import Sample from './sample'
 import axios from 'axios'
 
-
+//質問1-場所
 class Place extends React.Component{
   constructor(props) {
     super(props);
@@ -37,6 +37,7 @@ class Place extends React.Component{
   }
 }
 
+//質問2-予算
 class Budget extends React.Component{
   constructor(props) {
     super(props);
@@ -74,6 +75,7 @@ class Budget extends React.Component{
   }
   }
 
+//質問3-インドア、アウトドア
 class Style extends React.Component{
   constructor(props) {
     super(props);
@@ -105,6 +107,7 @@ class Style extends React.Component{
   }
   }
   
+//質問4-年齢
 class Age extends React.Component{
   constructor(props) {
     super(props);
@@ -141,6 +144,7 @@ class Age extends React.Component{
   }
   }
     
+//質問5-性格
 class Personality extends React.Component{
   constructor(props) {
     super(props);
@@ -182,6 +186,7 @@ class Personality extends React.Component{
   }
   }
   
+//質問6-色
 class Color extends React.Component{
   constructor(props) {
     super(props);
@@ -223,6 +228,7 @@ class Color extends React.Component{
   }
   }
   
+//質問6-数字
 class Number extends React.Component{
   constructor(props) {
     super(props);
@@ -247,6 +253,7 @@ class Number extends React.Component{
   }
   }
 
+//質問6-睡眠時間
 class Sleep extends React.Component{
   constructor(props) {
     super(props);
@@ -283,6 +290,7 @@ class Sleep extends React.Component{
   }
   }
 
+//質問7-季節
 class Season extends React.Component{
   constructor(props) {
     super(props);
@@ -324,7 +332,7 @@ class Season extends React.Component{
   }
   }
             
-
+//親コンポーネント
   class App extends React.Component{
     constructor(props) {
       super(props);
@@ -333,26 +341,29 @@ class Season extends React.Component{
       this.onValueChange = this.onValueChange.bind(this);
     }
 
-
+//次へボタンの更新 numの更新で管理
     onButtonClick = (state) => {
       this.setState({ num: state+1 });
     };
-
+//戻るボタンの更新 numの更新で管理
     onButtonClick2 = (state) => {
       this.setState({ num: state-1 });
     };
 
+//次へボタンを押すことで起動、place,stateの更新,入力式はhandleChange
     handleChange(event) {
       this.setState({
         place: event.target.value
       });
     }
+//次へボタンを押すことで起動、number,stateの更新
     handleChange2(event) {
       this.setState({
         number: event.target.value
       });
     }
-  
+
+//次へボタンを押すことで起動、budget,stateの更新,ラジオボックスはonValueChange
     onValueChange(event) {
       this.setState({
         budget: event.target.value
@@ -378,8 +389,9 @@ class Season extends React.Component{
     }
 
     onValueChange5(event) {
-      this.setState(event);
-
+      this.setState({
+        color: event.target.value
+      });
     }
 
     onValueChange6(event) {
@@ -393,7 +405,9 @@ class Season extends React.Component{
       });
     }
 
-
+//一度間違えた場合、search/searchとなってしまい、その上からこの検索をかけることになってしまうのでバグが起きる
+//reactとrubyのルーティングが別になっているので、ルーティングをどちらか一つする必要がある
+//reactで値をrubyに送れるが、画面遷移を同時にできない？
     handleSubmit(state) {
       window.location.href = `search/search?place=${state.place}&budget=${state.budget}&style=${state.style}&age=${state.age}&personality=${state.personality}&color=${state.color}&number=${state.number}&sleep=${state.sleep}&season=${state.season}`
     }
@@ -401,17 +415,15 @@ class Season extends React.Component{
     render(){
       console.log(this.state)
       const { num,place,budget,style,age,personality,color,number,sleep,season} = this.state
-      let simpleDataJSON = JSON.stringify(this.state);
-      // console.log(simpleDataJSON);
-      // console.log()
+      
       return(
         <div>
           {num === 1 && <Place State={(state) => this.onButtonClick(state)} State2={(state) => this.onButtonClick2(state)} num={num} place={place} handleChange={(event) => this.handleChange(event)}/>}
           {num === 2 && <Budget State={(state) => this.onButtonClick(state)} State2={(state) => this.onButtonClick2(state)} num={num} budget={budget} onValueChange={(event) =>this.onValueChange(event)}/>}
           {num === 3 && <Style State={(state) => this.onButtonClick(state)} State2={(state) => this.onButtonClick2(state)} num={num} style={style} onValueChange={(event) =>this.onValueChange2(event)}/>}
           {num === 4 && <Age State={(state) => this.onButtonClick(state)} State2={(state) => this.onButtonClick2(state)} num={num} age={age} onValueChange={(event) =>this.onValueChange3(event)}/>}
-          {num === 5 && <Personality State={(state) => this.onButtonClick(state)} State2={(state) => this.onButtonClick2(state)} num={num} personality={personality} onValueChange={(event) =>this.onValueChange5({personality: event.target.value})}/>}
-          {num === 6 && <Color State={(state) => this.onButtonClick(state)} State2={(state) => this.onButtonClick2(state)} num={num} color={color} onValueChange={(event) =>this.onValueChange5({color: event.target.value})} />}
+          {num === 5 && <Personality State={(state) => this.onButtonClick(state)} State2={(state) => this.onButtonClick2(state)} num={num} personality={personality} onValueChange={(event) =>this.onValueChange4(event)}/>}
+          {num === 6 && <Color State={(state) => this.onButtonClick(state)} State2={(state) => this.onButtonClick2(state)} num={num} color={color} onValueChange={(event) =>this.onValueChange5(event)} />}
           {num === 7 && <Number State={(state) => this.onButtonClick(state)} State2={(state) => this.onButtonClick2(state)} num={num} number={number} handleChange={(event) =>this.handleChange2(event)} />}
           {num === 8 && <Sleep State={(state) => this.onButtonClick(state)} State2={(state) => this.onButtonClick2(state)} num={num} sleep={sleep} onValueChange={(event) =>this.onValueChange6(event)} />}
           {num === 9 && <Season State={(state) => this.onButtonClick(state)} State2={(state) => this.onButtonClick2(state)} num={num} season={season} onValueChange={(event) =>this.onValueChange7(event)} handleSubmit={() => this.handleSubmit(this.state)}/>}
