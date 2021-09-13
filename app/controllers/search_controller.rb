@@ -261,7 +261,9 @@ class SearchController < ApplicationController
   #APIを叩いてとってきた結果
   def select_store
     @select_store = SelectStore.new
+    if current_user
     @select_store.user_id = current_user.id
+    end
     @select_store.store_id = params[:store_id]
     @select_store.name = params[:name]
     @select_store.logo = params[:logo]
