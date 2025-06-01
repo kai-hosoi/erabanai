@@ -58,4 +58,16 @@ Things you may want to cover:
 
 * Deployment instructions
 
+ローカル起動の最短コマンド一覧
+bash
+コピーする
+編集する
+git clone ...
+cd プロジェクト
+bundle install
+yarn install          # ← webpacker使用時のみ
+rails db:create
+rails db:migrate
+rails s
+
 
