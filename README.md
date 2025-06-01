@@ -20,6 +20,7 @@
 ・履歴
 ・ログインは必須ではないが、ログインしない場合、これまで提示したことがあるお店を表示してしまうことがある。ログインするとこれまでの履歴も見れることができる。
 ・検索して出てきた候補はクリックするとホームページに飛ぶ仕組み-ホームページまで飛ぶと、プロフィールの履歴に帰ってきて、検索履歴にそれが加わる
+・場所をフリー検索できるようにする
 
 これから実装する機能
 
@@ -28,7 +29,9 @@
 ・（店の様子が見れるように画像をつけるタップで他の画像も見れるようにしたい）
 ・reactで部分的にフロントを実装（質問にササッと答えてもらいたいため）
 ・1-10の間を選ぶ質問でバリデート機能によって他の値を入れれないようにする
-場所をフリー検索できるようにする
+
+使用したAPI
+https://webservice.recruit.co.jp/doc/hotpepper/reference.html
 
 
 
@@ -54,5 +57,20 @@ Things you may want to cover:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
+
+ローカル起動の最短コマンド一覧
+bash
+コピーする
+編集する
+git clone ...
+cd プロジェクト
+bundle install
+yarn install          # ← webpacker使用時のみ
+rails db:create
+rails db:migrate
+rails s
+
+サーバーを止める
+Ctrl + C
 
 
